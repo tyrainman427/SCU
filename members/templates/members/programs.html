@@ -1,0 +1,72 @@
+{% extends "members/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<style>
+    .programs {
+        margin-top: 100px;
+        text-align: center;
+    }
+</style>
+<div class="jumbotron jumbotron-fluid programs"  style="color: #f8f9fa;font-weight: bolder;background: green;">
+    <div class="container">
+      <h1 class="display-4">SILVER CITY UPRISING PROGRAMS</h1>
+      <!-- <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> -->
+    </div>
+  </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+           
+            <hr>
+            <p>Memberships is limited to African-Americans living in poverty.  All SCU members will have access to the 
+                services based on the provisions of each program.  There is no preferential treatment given to any one 
+                member.   All members can sign up for programs as long as there are funds and space and they meet the 
+                provision set for each program.  Approval for some programs may be based on their business plan, 
+                financial plan, financial circumstances and/or background checks for babysitting.  Board of Directors and 
+                paid Staff members are not beneficiaries of Silver City Uprising’s programs.</p><br>
+
+                <h2>TRAINING PROGRAM</h2>
+
+                <ul>
+                    <li>Financial literacy training
+                        <ul>
+                            <li>Members will receive training on how to save money, building equity through 
+                                investments and how to live within their means to decrease financial insecurities.</li>
+                        </ul>
+                    </li>
+                    <li>Computer training
+                        <ul>
+                            <li>
+                                Members will receive training on coding and many applications used for work, college 
+                                and/or leisure
+                            </li>
+                            <li>
+                                SCU will provide members with a database that enable them to self-learn.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Business literacy training
+                        <ul>
+                            <li>
+                                Members who fall into financial crisis seeking financial assistance of any kind will be 
+                                required to take this training.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+               
+                    <p>
+                    All trainings will be conducted by certified educators selected by SCU and based on their 
+                    availability.
+                    </p>
+                
+                
+
+
+        </div>
+    </div>
+</div> 
+
+{% endblock %}

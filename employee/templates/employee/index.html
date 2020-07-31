@@ -1,0 +1,45 @@
+{% extends 'members/base.html' %}
+
+{% block body %}
+
+<h2>MBM Portal</h2>
+  <hr class="mb-4">
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h4>Employees</h4>
+      <ul class="list-group">
+  <li class="list-group-item"><a href="{% url 'employee:employee-create'%}">Add New Employee</a></li>
+  <li class="list-group-item"><a href="{% url 'employee:employee-list'%}">View/Edit Employee</a></li>
+  <li class="list-group-item">Import Employees</li>
+  <li class="list-group-item">Timesheet</li>
+  <li class="list-group-item">Reports</li>
+</ul>
+    </div>
+    <div class="col-sm">
+      <h4>Clients</h4>
+      <ul class="list-group">
+  <li class="list-group-item">Add New Client</li>
+  <li class="list-group-item">View/Edit Clients</li>
+  <li class="list-group-item">Import Clients</li>
+  <li class="list-group-item">Projects</li>
+  <li class="list-group-item">Reports</li>
+</ul>
+    </div>
+    <div class="col-sm">
+      <h4>IT</h4>
+      <ul class="list-group">
+        <li class="list-group-item">Create a Ticket</li>
+        <li class="list-group-item">View/Edit Tickets</li>
+        <li class="list-group-item">Request Access</li>
+        <li class="list-group-item">Inventory</li>
+        <li class="list-group-item">Reports</li>
+</ul>
+    </div>
+  </div>
+</div>
+<hr class="mb-4">
+
+<br class="mb-6">
+
+{% endblock %}

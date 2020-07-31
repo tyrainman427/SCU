@@ -1,0 +1,18 @@
+{% extends "members/base.html" %}
+
+{% block body %}
+
+<a class="btn btn-warning btn-sm" href="{% url 'employee:employee-update' employee.id %}" type="button" name="button">Edit</a>
+<a class="btn btn-danger btn-sm" href="{% url 'employee:employee-delete' pk=employee.id %}" type="button" name="button">Delete</a>
+
+
+  <h1>{{ employee.first_name }} {{ employee.last_name}}</h1>
+
+  <p><strong>Address:</strong>{{employee.address }}</p> <!-- author detail link not yet defined -->
+  <p><strong>City:</strong> {{ employee.city }}</p>
+  <p><strong>State:</strong> {{ employee.state }}</p>
+  <p><strong>Phone:</strong> {{ employee.phone_number }}</p>
+  <p><strong>Email:</strong> {{ employee.email_address }}</p>
+
+    <a class="btn btn-secondary btn-sm" href="{% url 'employee:employee-list' %}" type="button" name="button">Back</a>
+{% endblock %}

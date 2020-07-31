@@ -1,0 +1,17 @@
+{% extends 'members/base.html' %}
+
+{% block body %}
+
+<h2>MBM Employee Portal</h2>
+<div class="form-group">
+  <form method="POST" enctype="multipart/form-data">
+      <!-- Security token -->
+      {% csrf_token %}
+      <!-- Using the formset -->
+      {{ form.as_p }}
+      <input class="btn btn-primary bt-sm" type="submit" value="Submit">
+      <a class="btn btn-secondary" href="{% url 'employee:employee-list' %}" type="button" name="button">Back</a>
+  </form>
+</div>
+
+{% endblock %}
