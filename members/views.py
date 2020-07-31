@@ -14,7 +14,7 @@ from django.conf import settings
 
 
 def index(request):
-    post = Post.objects.filter(status=1).order_by('-created_on')
+    # post = Post.objects.filter(status=1).order_by('-created_on')
     page = request.GET.get('page', 1)
 
     paginator = Paginator(post, 2)
@@ -25,7 +25,7 @@ def index(request):
     except EmptyPage:
         post = paginator.page(paginator.num_pages)
 
-    context = {'post':post}
+    context = {}
     return render(request,'members/index.html',context)
 
 
@@ -49,24 +49,24 @@ def contact(request):
             to = ['support@silvercityuprising.org',]
             name = form.cleaned_data["name"]
             email = f'Email: {form.cleaned_data["email"]}'
-            
+
             try:
                 send_mail(subject, message, from_email, to,name,email)
-            
+
                 return render(request,'members/contact.html',{'name':name})
             except BadHeaderError:
                 return HttpResponse("Invalid headers")
         else:
             form = ContactForm()
             return HttpResponse("The header was invalid")
-            
+
     return render(request, 'members/contact.html',{'form':form})
 
 
-            
-    
-    
- 
+
+
+
+
 
 def signup(request):
     return render(request, 'members/member_signup.html')
@@ -99,7 +99,7 @@ class MemberCreateView(CreateView):
     model = Member
     fields = ['first_name', 'last_name','phone_number','email_address',
     ]
-    
+
 @login_required
 class MemberUpdateView(UpdateView):
     model = Member
@@ -109,8 +109,3 @@ class MemberUpdateView(UpdateView):
 class MemberDeleteView(DeleteView):
     model = Member
     success_url = '/members/'
-
-
-
-
-    
