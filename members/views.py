@@ -15,15 +15,15 @@ from django.conf import settings
 
 def index(request):
     # post = Post.objects.filter(status=1).order_by('-created_on')
-    page = request.GET.get('page', 1)
-
-    paginator = Paginator(post, 2)
-    try:
-        post = paginator.page(page)
-    except PageNotAnInteger:
-        post = paginator.page(1)
-    except EmptyPage:
-        post = paginator.page(paginator.num_pages)
+    # page = request.GET.get('page', 1)
+    #
+    # paginator = Paginator(post, 2)
+    # try:
+    #     post = paginator.page(page)
+    # except PageNotAnInteger:
+    #     post = paginator.page(1)
+    # except EmptyPage:
+    #     post = paginator.page(paginator.num_pages)
 
     context = {}
     return render(request,'members/index.html',context)
