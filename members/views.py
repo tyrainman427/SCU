@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from .models import Member, Address, Membership
 from django.urls import reverse,reverse_lazy
 from django.contrib.auth.models import User
-from .forms import MemberUpdateForm, ContactForm
+from .forms import MemberUpdateForm, ContactForm,NewsletterForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 from django.contrib.auth import update_session_auth_hash
@@ -14,18 +14,25 @@ from django.conf import settings
 
 
 def index(request):
-    # post = Post.objects.filter(status=1).order_by('-created_on')
-    # page = request.GET.get('page', 1)
-    #
-    # paginator = Paginator(post, 2)
-    # try:
-    #     post = paginator.page(page)
-    # except PageNotAnInteger:
-    #     post = paginator.page(1)
-    # except EmptyPage:
-    #     post = paginator.page(paginator.num_pages)
+    form = NewsletterForm()
+    if request.method == "POST":
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data["first_name"]
+            last_name = form.cleaned_data["last_name"]
+            email = form.cleaned_data["email"]
+            form.save()
 
-    context = {}
+            try:
+
+                return render(request,'members/index.html',{'first_name':first_name})
+            except BadHeaderError:
+                return HttpResponse("Invalid headers")
+        else:
+            form = NewsletterForm()
+            return HttpResponse("The header was invalid")
+
+    context = {'form':form}
     return render(request,'members/index.html',context)
 
 

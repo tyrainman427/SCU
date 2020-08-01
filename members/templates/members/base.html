@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,9 +19,108 @@
 
 </head>
 <body>
-  <div class="container-fluid">
+
+<style>
+   .fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 80px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+  }
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
+
+  .fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+
+  .fa-youtube {
+    background: #bb0000;
+    color: white;
+  }
+
+  .fa-instagram {
+    background: #125688;
+    color: white;
+  }
+  .fa:hover {
+      opacity: 0.7;
+  }
+  #quotes {
+    background: black;
+    padding: 50px 0 30px 0;
+    text-align: center;
+    margin-top: 40px;
+  }
+  #quotes p {
+    color: #fff;
+    font-size: 32px;
+    font-family: 'Josefin Sans';
+  }
+  #quotes p.author {
+    font-size: 20px;
+    color: #666;
+  }
+  #showcase img {
+    height: 500px;
+  }
+  .showcase-left{
+    margin-left: 11px;
+    margin-top: 100px;
+  }
+  .showcase-right {
+    margin-right: 200px;
+  }
+  .showcase-btn {
+    margin-left: 75px;
+    margin-top: 14px;
+  }
+  #info1 .info-right{
+    margin-top: 90px;
+  }
+  .info-left img{
+    margin-top: 90px;
+    height: 400px;
+    background-size: cover;
+  }
+  #info2 {
+    margin: 20px 0 60px 0;
+  }
+  #member {
+    padding: 40px;
+    color: #fff;
+    border-top: red 7px solid;
+    border-bottom: green 7px solid;
+    background-size: cover;
+    background-color: black;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: 'Alegreya', serif;
+
+  }
+  p {
+    font-family: Roboto;
+  }
+  #showcase h1{
+    font-size: 63px;
+    margin-bottom: 20px;
+  }
+
+  </style>
+
+  <div class="container">
     <!-- navbar start -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-default navbar-right">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-default navbar-right mw-100">
       <!-- <img src="{% static 'img/brand.png' %}" width="30" height="30" alt=""> -->
       <a class="navbar-brand" href="/">SCU</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,14 +136,14 @@
               About
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item font-weight-bold" href="/about/">What we do</a>
+              <a class="dropdown-item font-weight-bold" href="/about/">Our Mission</a>
               <a class="dropdown-item font-weight-bold" href="/founders/">Our Staff</a>
             </div>
           </li>
           <a class="nav-item nav-link text-dark font-weight-bold" href="/contact/">Contact</a>
           <!-- <a class="nav-item nav-link" href="#">Donate</a> -->
           <!-- <a class="nav-item nav-link" href="/portal/">Employee Portal</a> -->
-      
+
         </div>
         </div>
     </nav>
@@ -78,26 +177,23 @@
             <ul class="list-unstyled text-small">
               <li><a class="text-muted" href="#">Announcements</a></li>
               <li><a class="text-muted" href="#">News</a></li>
-              <li><a class="text-muted" href="#">Fundraising</a></li>
-              <li><a class="text-muted" href="#">Privacy</a></li>
-              <li><a class="text-muted" href="#">Another one</a></li>
-              <li><a class="text-muted" href="#">Last time</a></li>
+              <li><a class="text-muted" href="#">Members</a></li>
+              <li><a class="text-muted" href="#">Learning</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>Resources</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Resource</a></li>
-              <li><a class="text-muted" href="#">Resource name</a></li>
-              <li><a class="text-muted" href="#">Another resource</a></li>
-              <li><a class="text-muted" href="#">Final resource</a></li>
+              <li><a class="text-muted" href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">Covid-19</a></li>
+              <li><a class="text-muted" href="https://www.benefits.gov/">Benefits</a></li>
+              <li><a class="text-muted" href="https://freefinancialhelp.net/get-used-car-goodwill/">Need a car</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>About</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Team</a></li>
-              <li><a class="text-muted" href="#">Locations</a></li>
+              <li><a class="text-muted" href="/founders/">Team</a></li>
+              <li><a class="text-muted" href="/about/">Mission</a></li>
               <li><a class="text-muted" href="#">Privacy</a></li>
               <li><a class="text-muted" href="#">Terms</a></li>
             </ul>

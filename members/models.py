@@ -11,11 +11,11 @@ class Address(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=2)
     zip = models.CharField(max_length=5)
-    
+
     def __str__(self):
         return f"{self.street},{self.city},{self.state}"
-    
-    
+
+
 class Membership(models.Model):
     id = models.AutoField(primary_key=True)
     is_active = models.BooleanField(default=True)
@@ -39,7 +39,7 @@ class Member(models.Model):
     def __str__(self):
         return self.first_name
 
-    def get_absolute_url(self): 
+    def get_absolute_url(self):
         return reverse('members:members_detail', args=[str(self.id)])
 
 class Contact(models.Model):
@@ -48,8 +48,14 @@ class Contact(models.Model):
     email = models.EmailField(max_length=15)
     message = models.CharField(max_length=500)
     from_email = models.EmailField(max_length=15)
-    
+
     def __str__(self):
         return self.name
 
+class Newsletter(models.Model):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    email = models.EmailField(max_length=15)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"

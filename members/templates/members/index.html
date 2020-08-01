@@ -4,104 +4,6 @@
 {% load static %}
 
 
-<style>
- .fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 80px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
-}
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.fa-twitter {
-  background: #55ACEE;
-  color: white;
-}
-
-.fa-linkedin {
-  background: #007bb5;
-  color: white;
-}
-
-.fa-youtube {
-  background: #bb0000;
-  color: white;
-}
-
-.fa-instagram {
-  background: #125688;
-  color: white;
-}
-.fa:hover {
-    opacity: 0.7;
-}
-#quotes {
-  background: black;
-  padding: 50px 0 30px 0;
-  text-align: center;
-  margin-top: 40px;
-}
-#quotes p {
-  color: #fff;
-  font-size: 32px;
-  font-family: 'Josefin Sans';
-}
-#quotes p.author {
-  font-size: 20px;
-  color: #666;
-}
-#showcase img {
-  height: 500px;
-}
-.showcase-left{
-  margin-left: 200px;
-  margin-top: 100px;
-}
-.showcase-right {
-  margin-right: 200px;
-}
-.showcase-btn {
-  margin-left: 242px;
-  margin-top: 14px;
-}
-#info1 .info-right{
-  margin-top: 90px;
-}
-.info-left img{
-  margin-top: 90px;
-  height: 400px;
-  background-size: cover;
-}
-#info2 {
-  margin: 20px 0 60px 0;
-}
-#member {
-  /* background: url("{% static 'img/shirt.jpg'%}") no-repeat center center fixed; */
-  padding: 40px;
-  color: #fff;
-  border-top: red 7px solid;
-  border-bottom: green 7px solid;
-  background-size: cover;
-  background-color: black;
-}
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Alegreya', serif;
-
-}
-p {
-  font-family: Roboto;
-}
-#showcase h1{
-  font-size: 63px;
-  margin-bottom: 20px;
-}
-</style>
-
 <section id="showcase">
   <div class="container">
     <div class="row">
@@ -113,11 +15,11 @@ p {
           <hr>
           <h2>CORPORATION</h2>
         </div>
-        <a class="btn btn-danger btn-lg showcase-btn" href="">Our Mission</a>
+        <a class="btn btn-danger btn-lg showcase-btn" href="/about/">Our Mission</a>
       </div>
       <div class="col-md-6 col-sm-6">
         <div class="showcase-right">
-          <img src="{% static 'img/SCU.png' %}" alt="">
+          <img src="{% static 'img/SCU.png' %}" alt="" class="d-none d-lg-block">
         </div>
       </div>
     </div>
@@ -137,7 +39,7 @@ p {
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <div class="info-left">
-          <img src="{% static 'img/blm.jpg' %}" alt="">
+          <img class="d-none d-lg-block mw-100" src="{% static 'img/blm.jpg' %}" alt="">
         </div>
       </div>
       <div class="col-md-6 col-sm-6">
@@ -145,7 +47,7 @@ p {
           <h2>Silver City Uprising's Mission</h2>
           <p>"To create, build and promote healthy thriving businesses within the community, to positively contribute to the economic empowerment, growth and development of our community for this generation and future generations."</p>
           <br>
-          <a class="btn btn-success btn-lg" href="">Read More</a>
+          <a class="btn btn-success btn-lg" href="/about/">Read More</a>
         </div>
       </div>
     </div>
@@ -160,25 +62,13 @@ p {
       <div class="col-md-6 col-sm-6">
         <div class="info-left">
           <h2>Person Highlight of the month</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque labore quod similique deleniti est, iste recusandae laudantium libero vero molestias laboriosam consequatur cumque dolor commodi possimus nulla. Doloribus, ut. Non.</p>
-          <div>
-            {% for posts in post.first%}
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ posts.title }}</h2>
-                    <p class="card-text text-muted h6">{{ posts.author }} | {{ posts.created_on}} </p>
-                    <p class="card-text">{{posts.content|slice:":200" }}</p>
-                    <a href="{% url 'mublog:post_detail' posts.slug  %}" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-            </div>
-            {% endfor %}
-          </div>
+          <p>Coming Soon....</p>
         </div>
       </div>
       <div class="col-md-6 col-sm-6">
         <div class="info-right">
           <h2>Business Highlight of the month</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque labore quod similique deleniti est, iste recusandae laudantium libero vero molestias laboriosam consequatur cumque dolor commodi possimus nulla. Doloribus, ut. Non.</p>
+          <p>Coming Soon....</p>
         </div>
       </div>
     </div>
@@ -193,18 +83,31 @@ p {
 
 <section id="member">
 
-  <div class="container">
+  <div class="container-fluid">
       <div class="row">
           <div class="col-md-5 col-sm-5">
-            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+            <form id="contact-form" name="contact-form" action="" method="POST">
 
               <!--Grid row-->
               <div class="row">
 
+
                   <!--Grid column-->
                   <div class="col-md-6">
                       <div class="md-form mb-0">
-                          <input type="text" id="name" name="name" class="form-control">
+                        {% if first_name %}
+                        <center>
+                            <h2>Thanks {{ first_name }} for Joining!</h2>
+                            <p>We received your request and will get back you soon.</p>
+                        </center>
+                        <br><br><br>
+                        {% else %}
+                        <form method="POST">
+                          {% csrf_token %}
+                          {{ form.as_p }}
+                          <button type="submit" class="save btn btn-danger">Join Us!</button>
+                        </form>
+                          <!-- <input type="text" id="name" name="name" class="form-control">
                           <label for="name" class="">first name</label>
                       </div>
                       <div class="md-form mb-0">
@@ -213,7 +116,8 @@ p {
                     </div>
                     <div class="md-form mb-0">
                       <input type="text" id="email" name="email" class="form-control">
-                      <label for="email" class="">Your email</label>
+                      <label for="email" class="">Your email</label> -->
+                      {% endif %}
                   </div>
                   </div>
                   <!--Grid column-->
@@ -221,9 +125,6 @@ p {
               </div>
               <!--Grid row-->
 
-              <div class="text-center text-md-left">
-                <a class="btn btn-primary">Join Us</a>
-            </div>
             <div class="status"></div>
 
           </form>
@@ -240,11 +141,11 @@ p {
   <center>
     <h1>Follow Us!</h1>
                 <br>
-                <a href="#" class="fa fa-facebook"></a>
+                <a href="https://www.facebook.com/Silver-City-Uprising-104701874678136" class="fa fa-facebook"></a>
                 <!-- <a href="#" class="fa fa-twitter"></a> -->
-                <a href="#" class="fa fa-linkedin"></a>
-                <a href="#" class="fa fa-youtube"></a>
-                <a href="#" class="fa fa-instagram"></a>
+                <!-- <a href="#" class="fa fa-linkedin"></a> -->
+                <!-- <a href="#" class="fa fa-youtube"></a> -->
+                <a href="https://www.instagram.com/silver_city_uprising/" class="fa fa-instagram"></a>
   </center>
 </section>
 
@@ -322,12 +223,12 @@ p {
   sr.reveal('.showcase-left', {
     duration:2000,
     origin:'top',
-    distance:'300px',
+    distance:'400px',
   });
   sr.reveal('.showcase-right', {
     duration:2000,
     origin:'right',
-    distance:'300px',
+    distance:'400px',
   });
   sr.reveal('.showcase-btn', {
     duration:2000,
