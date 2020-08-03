@@ -1,5 +1,5 @@
 {% extends 'members/base.html' %}
-
+{% load crispy_forms_tags %}
 {% block body %}
 {% load static %}
 
@@ -56,24 +56,23 @@
 
 <hr>
 
-<section id="info2">
+<!-- <section id="info2">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <div class="info-left">
           <h2>Person Highlight of the month</h2>
-          <p>Coming Soon....</p>
+          <p>Coming Soon...</p>
         </div>
       </div>
       <div class="col-md-6 col-sm-6">
         <div class="info-right">
           <h2>Business Highlight of the month</h2>
-          <p>Coming Soon....</p>
-        </div>
+          <p>Coming Soon...</p>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <div class="container">
 
@@ -104,9 +103,11 @@
                         {% else %}
                         <form method="POST">
                           {% csrf_token %}
-                          {{ form.as_p }}
-                          <button type="submit" class="save btn btn-danger">Join Us!</button>
+                          {{ form|crispy }}
+                          <br>
+                          <button type="submit" class="save btn btn-danger mb-3">Join Us!</button>
                         </form>
+
                           <!-- <input type="text" id="name" name="name" class="form-control">
                           <label for="name" class="">first name</label>
                       </div>
@@ -215,43 +216,43 @@
     </div> -->
 
 <script>
-  window.sr = ScrollReveal();
-  sr.reveal('.navbar', {
-    duration:2000,
-    origin:'left',
-  });
-  sr.reveal('.showcase-left', {
-    duration:2000,
-    origin:'top',
-    distance:'400px',
-  });
-  sr.reveal('.showcase-right', {
-    duration:2000,
-    origin:'right',
-    distance:'400px',
-  });
-  sr.reveal('.showcase-btn', {
-    duration:2000,
-    delay:1000,
-    origin:'bottom',
-    distance:'300px',
-  });
-  sr.reveal('#quotes div', {
-    duration:2000,
-    origin:'bottom',
-  });
-  sr.reveal('.info-left', {
-    duration:2000,
-    origin:'left',
-    distance:'300px',
-    viewFactor:0.2
-  });
-  sr.reveal('.info-right', {
-    duration:2000,
-    origin:'right',
-    distance:'300px',
-    viewFactor:0.2
-  });
+  // window.sr = ScrollReveal();
+  // sr.reveal('.navbar', {
+  //   duration:2000,
+  //   origin:'left',
+  // });
+  // sr.reveal('.showcase-left', {
+  //   duration:2000,
+  //   origin:'top',
+  //   distance:'400px',
+  // });
+  // sr.reveal('.showcase-right', {
+  //   duration:2000,
+  //   origin:'right',
+  //   distance:'400px',
+  // });
+  // sr.reveal('.showcase-btn', {
+  //   duration:2000,
+  //   delay:1000,
+  //   origin:'bottom',
+  //   distance:'300px',
+  // });
+  // sr.reveal('#quotes div', {
+  //   duration:2000,
+  //   origin:'bottom',
+  // });
+  // sr.reveal('.info-left', {
+  //   duration:2000,
+  //   origin:'left',
+  //   distance:'300px',
+  //   viewFactor:0.2
+  // });
+  // sr.reveal('.info-right', {
+  //   duration:2000,
+  //   origin:'right',
+  //   distance:'300px',
+  //   viewFactor:0.2
+  // });
 </script>
 
 <!-- <span>Photo by <a href="https://unsplash.com/@thenewmalcolm?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Obi Onyeador</a> on <a href="https://unsplash.com/s/photos/black-people?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->

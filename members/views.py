@@ -39,11 +39,33 @@ def index(request):
 def about(request):
     return render(request, 'members/about.html')
 
+def privacy(request):
+    return render(request, 'members/privacy.html')
+
 def program(request):
     return render(request, 'members/programs.html')
 
 def founders(request):
-    return render(request, 'members/founders.html')
+    form = NewsletterForm()
+    if request.method == "POST":
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data["first_name"]
+            last_name = form.cleaned_data["last_name"]
+            email = form.cleaned_data["email"]
+            form.save()
+
+            try:
+
+                return render(request,'members/index.html',{'first_name':first_name})
+            except BadHeaderError:
+                return HttpResponse("Invalid headers")
+        else:
+            form = NewsletterForm()
+            return HttpResponse("The header was invalid")
+
+    context = {'form':form}
+    return render(request, 'members/founders.html',context)
 
 def contact(request):
     form = ContactForm()

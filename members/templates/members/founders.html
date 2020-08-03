@@ -1,5 +1,6 @@
 {% extends 'members/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block body %}
 
 <style>
@@ -169,7 +170,7 @@ https://meritpages.com/brigittalove
             <h3>Ty Rainey</h3>
             <div class="card" style="width: 18rem;height: 12rem;">
                 <div class="card-horizontal">
-                <img class="card-img-top" src="{% static 'img/ty.JPG' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'img/ty.jpeg' %}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">Vice Chairman</h5>
                   <p class="card-text">Director of IT</p>
@@ -191,29 +192,28 @@ https://meritpages.com/brigittalove
         </div>
         <div class="col-md-3">
             <h1>Become A Member Today!</h1>
-                      <div class="md-form mb-0">
-                          <input type="text" id="name" name="name" class="form-control">
-                          <label for="name" class="">first name</label>
-                      </div>
-                      <div class="md-form mb-0">
-                        <input type="text" id="name" name="name" class="form-control">
-                        <label for="name" class="">last name</label>
-                    </div>
-                    <div class="md-form mb-0">
-                      <input type="text" id="email" name="email" class="form-control">
-                      <label for="email" class="">Your email</label>
-                  </div>
-                  <div class="text-center text-md-left">
-                    <a class="btn btn-primary text-white">Join Us</a>
-                </div>
+            {% if first_name %}
+            <center>
+                <h2>Thanks {{ first_name }} for Joining!</h2>
+                <p>We received your request and will get back you soon.</p>
+            </center>
+            <br><br><br>
+            {% else %}
+            <form method="POST">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <br>
+              <button type="submit" class="save btn btn-danger">Join Us!</button>
+            </form>
+          {% endif %}
                 <br><br><br>
                 <h1>Follow Us!</h1>
                 <br>
-                <a href="#" class="fa fa-facebook"></a>
+                <a href="https://www.facebook.com/Silver-City-Uprising-104701874678136" class="fa fa-facebook"></a>
                 <!-- <a href="#" class="fa fa-twitter"></a> -->
-                <a href="#" class="fa fa-linkedin"></a>
-                <a href="#" class="fa fa-youtube"></a>
-                <a href="#" class="fa fa-instagram"></a>
+                <!-- <a href="#" class="fa fa-linkedin"></a> -->
+                <!-- <a href="#" class="fa fa-youtube"></a> -->
+                <a href="https://www.instagram.com/silver_city_uprising/" class="fa fa-instagram"></a>
         </div>
     </div>
 </div>
