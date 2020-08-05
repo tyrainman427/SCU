@@ -2,17 +2,36 @@
 {% load crispy_forms_tags %}
 {% block body %}
 
-<h2>MBM Create Member Page</h2>
-<div class="form-group">
-  <form method="POST" enctype="multipart/form-data">
-      <!-- Security token -->
-      {% csrf_token %}
-      <!-- Using the formset -->
-      {{form|crispy}}
-      <input class="btn btn-primary bt-sm" type="submit" value="Submit">
-      <a class="btn btn-secondary" href="{% url 'members:member-list' %}" type="button" name="button">Back</a>
-  </form>
-</div>
+<style>
+  .join {
+    margin-top: 100px;
+  }
+</style>
+<div class="container-fluid join">
+  <div class="row">
+    <div class="col-md-4">
 
+    </div>
+    <div class="col-md-4">
+      <h2>Become a member of SCU</h2>
+      <div class="form-group">
+        <form method="POST" enctype="multipart/form-data">
+            <!-- Security token -->
+            {% csrf_token %}
+            <!-- Using the formset -->
+            {{form|crispy}}
+            <br>
+            <input class="btn btn-primary bt-sm" type="submit" value="Submit">
+            <a class="btn btn-secondary bt-sm" href="{% url 'members:index' %}" type="button" name="button">Back</a>
+        </form>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+
+</div>
 
 {% endblock %}

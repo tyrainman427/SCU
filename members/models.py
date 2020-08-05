@@ -42,6 +42,20 @@ class Member(models.Model):
     def get_absolute_url(self):
         return reverse('members:members_detail', args=[str(self.id)])
 
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email_confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.user} {self.user.is_authenticated}'
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+        instance.profile.save()
+
 class Contact(models.Model):
     subject = models.CharField(max_length=100)
     name = models.CharField(max_length=20)

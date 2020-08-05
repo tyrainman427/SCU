@@ -3,44 +3,52 @@
 {% load crispy_forms_tags %}
 {% block body %}
 
-    <a class="btn btn-secondary btn-sm" href="{% url 'members:member-list' %}" type="button" name="button">Back</a>
+<style>
+  .profile {
+    margin-top: 120px
+  }
+</style>
 
-    <div class="container">    
+    <!-- <a class="btn btn-secondary btn-sm" href="{% url 'members:member-list' %}" type="button" name="button">Back</a> -->
+
+    <div class="container profile">
       <div class="row">
           <div class="panel panel-default">
-          <div class="panel-heading">  <h4 >Member Profile</h4></div>
+          <div class="panel-heading ml-2"><h4 >Member Profile</h4></div>
            <div class="panel-body">
           <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
-           <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
-         
-     
+           <!-- <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> -->
+
+
           </div>
           <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8" >
               <div class="container" >
                 <h2>{{member.first_name}} {{member.last_name}}</h2>
-                {% if member.pro_member %}
+                <!-- {% if member.pro_member %}
                 <p><i class="fa fa-star mr-1" aria-hidden="true"></i>Member Plus+</span></p>
                 {% else %}
                 <a class="btn btn-success btn-sm"  href="/signup/" >Become a Member</a>
-                {% endif %}
-                          
-                          
+                {% endif %} -->
+
+
               </div>
                <hr>
               <ul class="container details" >
-                <li><p><span class="glyphicon glyphicon-user one" style="width:50px;"></span>{{member.user.address.state}}</p></li>
-                <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{ member.user.email }}</p></li>
+                <li><p><span class="glyphicon glyphicon-user one" style="width:50px;"></span>Date of birth:  {{member.date_of_birth}}</p></li>
+                <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>Email:  {{ member.email_address }}</p></li>
               </ul>
               <hr>
-              <div class="col-sm-5 col-xs-6 tital " >Member since: {{ member.date_created}}</div>
+              <div class="col-md-5 col-sm-5 col-xs-6 tital" >Member since: {{ member.date_created}}</div>
               <form method="POST" enctype="multipart/form-data">
                 <!-- Security token -->
                 {% csrf_token %}
                 <!-- Using the formset -->
                   {{form|crispy}}
-                <button class="btn btn-primary bt-sm" type="submit" value="Submit">Update</button>
-                <a class="btn btn-secondary" href="{% url 'members:member-list' %}" type="button" name="button">Back</a>
+                  <br>
+                <!-- <button class="btn btn-primary bt-sm" type="submit" value="Submit">Update</button> -->
+                <a class="btn btn-secondary" href="{% url 'members:index' %}" type="button" name="button">Back</a>
             </form>
+            <br><br><br>
           </div>
       </div>
   </div>

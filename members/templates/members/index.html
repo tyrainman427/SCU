@@ -74,6 +74,7 @@
   </div>
 </section> -->
 
+
 <div class="container">
 
     <center><h1>Become A Member Today!</h1></center>
@@ -84,58 +85,15 @@
 
   <div class="container-fluid">
       <div class="row">
-          <div class="col-md-5 col-sm-5">
-            <form id="contact-form" name="contact-form" action="" method="POST">
 
-              <!--Grid row-->
-              <div class="row">
-
-
-                  <!--Grid column-->
-                  <div class="col-md-6">
-                      <div class="md-form mb-0">
-                        {% if first_name %}
-                        <center>
-                            <h2>Thanks {{ first_name }} for Joining!</h2>
-                            <p>We received your request and will get back you soon.</p>
-                        </center>
-                        <br><br><br>
-                        {% else %}
-                        <form method="POST">
-                          {% csrf_token %}
-                          {{ form|crispy }}
-                          <br>
-                          <button type="submit" class="save btn btn-danger mb-3">Join Us!</button>
-                        </form>
-
-                          <!-- <input type="text" id="name" name="name" class="form-control">
-                          <label for="name" class="">first name</label>
-                      </div>
-                      <div class="md-form mb-0">
-                        <input type="text" id="name" name="name" class="form-control">
-                        <label for="name" class="">last name</label>
-                    </div>
-                    <div class="md-form mb-0">
-                      <input type="text" id="email" name="email" class="form-control">
-                      <label for="email" class="">Your email</label> -->
-                      {% endif %}
-                  </div>
-                  </div>
-                  <!--Grid column-->
-
-              </div>
-              <!--Grid row-->
-
-            <div class="status"></div>
-
-          </form>
-          </div>
-          <div class="col-md-7 col-sm-7">
-            <p style="font-size: 27px;">You will become a part of the movement to see change in our community by using all our efforts and resources to rebuild,
-               uplift and educate our youths or adults who may need assistance.  Join now!</p>
-          </div>
-      </div>
+        <div class="col">
+          <p style="font-size: 27px;">You will become a part of the movement to see change in our community by using all our efforts and resources to rebuild,
+             uplift and educate our youths or adults who may need assistance.  Join now!</p>
+              <a class="btn btn-danger" href="/signup/">Join Us</a>
+        </div>
   </div>
+</div>
+
 </section>
 
 <section class="mb-2">
@@ -146,7 +104,7 @@
                 <!-- <a href="#" class="fa fa-twitter"></a> -->
                 <!-- <a href="#" class="fa fa-linkedin"></a> -->
                 <!-- <a href="#" class="fa fa-youtube"></a> -->
-                <a href="https://www.instagram.com/silver_city_uprising/" class="fa fa-instagram"></a>
+                <a href="https://www.instagram.com/silvercityuprising/" class="fa fa-instagram"></a>
   </center>
 </section>
 
@@ -216,43 +174,43 @@
     </div> -->
 
 <script>
-  // window.sr = ScrollReveal();
-  // sr.reveal('.navbar', {
-  //   duration:2000,
-  //   origin:'left',
-  // });
-  // sr.reveal('.showcase-left', {
-  //   duration:2000,
-  //   origin:'top',
-  //   distance:'400px',
-  // });
-  // sr.reveal('.showcase-right', {
-  //   duration:2000,
-  //   origin:'right',
-  //   distance:'400px',
-  // });
-  // sr.reveal('.showcase-btn', {
-  //   duration:2000,
-  //   delay:1000,
-  //   origin:'bottom',
-  //   distance:'300px',
-  // });
-  // sr.reveal('#quotes div', {
-  //   duration:2000,
-  //   origin:'bottom',
-  // });
-  // sr.reveal('.info-left', {
-  //   duration:2000,
-  //   origin:'left',
-  //   distance:'300px',
-  //   viewFactor:0.2
-  // });
-  // sr.reveal('.info-right', {
-  //   duration:2000,
-  //   origin:'right',
-  //   distance:'300px',
-  //   viewFactor:0.2
-  // });
+  window.sr = ScrollReveal();
+  sr.reveal('.navbar', {
+    duration:2000,
+    origin:'left',
+  });
+  sr.reveal('.showcase-left', {
+    duration:2000,
+    origin:'top',
+    distance:'400px',
+  });
+  sr.reveal('.showcase-right', {
+    duration:2000,
+    origin:'right',
+    distance:'400px',
+  });
+  sr.reveal('.showcase-btn', {
+    duration:2000,
+    delay:1000,
+    origin:'bottom',
+    distance:'300px',
+  });
+  sr.reveal('#quotes div', {
+    duration:2000,
+    origin:'bottom',
+  });
+  sr.reveal('.info-left', {
+    duration:2000,
+    origin:'left',
+    distance:'300px',
+    viewFactor:0.2
+  });
+  sr.reveal('.info-right', {
+    duration:2000,
+    origin:'right',
+    distance:'300px',
+    viewFactor:0.2
+  });
 </script>
 
 <!-- <span>Photo by <a href="https://unsplash.com/@thenewmalcolm?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Obi Onyeador</a> on <a href="https://unsplash.com/s/photos/black-people?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->

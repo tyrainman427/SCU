@@ -34,3 +34,6 @@ toml==0.10.1
 urllib3==1.25.9
 whitenoise==5.1.0
 wrapt==1.12.1
+
+[33mYou are using pip version 9.0.2, however version 20.2 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.[0m

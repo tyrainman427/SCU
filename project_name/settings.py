@@ -36,8 +36,8 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -46,10 +46,13 @@ INSTALLED_APPS = [
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+
+    'news',
     'members',
     'employee',
-    'crispy_forms'
-    # 'news',
+    'crispy_forms',
+    'captcha',
+
 
 ]
 
@@ -62,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.messages.context_processors.messages',
 
 ]
 
@@ -70,7 +74,7 @@ ROOT_URLCONF = 'project_name.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,6 +100,7 @@ DATABASES = {
         'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -147,6 +152,27 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+from decouple import config
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"#"sendgrid_backend.SendgridBackend"
+EMAIL_HOST = 'smtp.gmail.com'#'smtp.sendgrid.net'
+# SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+EMAIL_HOST_USER = 'silvercityuprising@gmail.com'#'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = config("EMAIL_PASSWORD")#SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = '/members/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True

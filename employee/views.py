@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import Employee
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class EmployeeList(ListView):
@@ -27,6 +28,10 @@ class EmployeeList(ListView):
 
         return result
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 class EmployeeDetailView(DetailView):
     template_name = "employee/employee_detail.html"
     member = Employee.objects.all()
@@ -35,6 +40,10 @@ class EmployeeDetailView(DetailView):
         id_ = self.kwargs.get("id")
         return get_object_or_404(Employee, id=id_)
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 
 class EmployeeCreateView(CreateView):
     model = Employee
@@ -42,6 +51,10 @@ class EmployeeCreateView(CreateView):
     'state','zip','phone_number','email_address','title','start_date','salary',
     'department','work_location','supervisor','emergency_contact_name','emergency_contact_number',
     ]
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 class EmployeeUpdateView(UpdateView):
     model = Employee
@@ -53,6 +66,14 @@ class EmployeeUpdateView(UpdateView):
     def get_absolute_url(self):
         return reverse('employee:Employee_detail', args=[str(self.id)])
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 class EmployeeDeleteView(DeleteView):
     model = Employee
     success_url = '/portal/'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
