@@ -69,7 +69,18 @@ from django.utils.decorators import method_decorator
 #         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
 #     else:
 #         return HttpResponse('Activation link is invalid!')
-# Sign Up View
+def login(request):
+    user = authenticate(username=username, password=password)
+    if user is not None:
+    # Password verified for user
+        if user.is_active:
+            return redirect('/')
+        else:
+            return redirect('/')
+    else:
+        return redirect('/')
+    return render(request, 'accounts/login.html')
+
 class SignUpView(View):
     form_class = SignUpForm
     template_name = 'members/signup.html'
@@ -79,6 +90,7 @@ class SignUpView(View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
+
         form = self.form_class(request.POST)
         if form.is_valid():
             human = True
@@ -100,6 +112,9 @@ class SignUpView(View):
             messages.success(request, ('Please Confirm your email to complete registration.'))
 
             return redirect('/accounts/login')
+        else:
+            message = "You have enter an incorrect captcha. Please try again."
+            messages.error(request,message)
 
         return render(request, self.template_name, {'form': form})
 
@@ -134,6 +149,10 @@ def about(request):
 
 def privacy(request):
     return render(request, 'members/privacy.html')
+
+@login_required
+def profile(request):
+    return render(request, 'members/profile.html')
 
 def program(request):
     return render(request, 'members/programs.html')

@@ -21,7 +21,7 @@
 
     {% if name %}
     <center>
-        <h2>Thanks {{ name }}!</h2>
+        <h2>Thanks {{ first_name }}!</h2>
         <p>We received your message and will get back you soon.</p>
     </center>
     <br><br><br>
@@ -34,9 +34,19 @@
     <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will get back to you within
         24-48 hours to assist you.</p>
 
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <div class="alert alert-success" role="alert">{{ message|escape|safe }}</div>
+                {% elif message.tags == 'error' %}
+                    <div class="alert alert-danger" role="alert">{{ message|escape|safe }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
         <form action="" method="post" class="mb-3">
             {% csrf_token %}
-          
+
             {{ form.non_field_errors }}
              {{form|crispy}}
             <!-- {% for hidden in form.hidden_fields %}

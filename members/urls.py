@@ -1,6 +1,6 @@
 from django.urls import path
 from django.urls import re_path
-from .views import MemberList, MemberDetailView,ActivateAccount,SignUpView,index,program,founders, MemberCreateView, MemberUpdateView, MemberDeleteView,privacy,about,contact, employee_portal
+from .views import MemberList,profile, MemberDetailView,ActivateAccount,SignUpView,index,program,founders, MemberCreateView, MemberUpdateView, MemberDeleteView,privacy,about,contact, employee_portal
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView,PasswordResetCompleteView,PasswordResetConfirmView,PasswordChangeView,PasswordChangeDoneView,PasswordResetView,PasswordResetConfirmView,PasswordResetDoneView
 
@@ -10,7 +10,7 @@ app_name = 'members'
 
 urlpatterns = [
     path('', index, name='index'),
-    # path('signup/', signup, name='signup'),
+    path('members/profile/', profile, name='profile'),
     path('privacy/', privacy, name='privacy'),
     path('about/', about, name='about'),
     path('contact/', contact,name='contact'),

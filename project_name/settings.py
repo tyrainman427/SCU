@@ -35,6 +35,10 @@ DEBUG = True
 
 # Application definition
 
+CAPTCHA_LETTER_ROTATION = None
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge'
+CAPTCHA_FOREGROUND_COLOR = 'black'
+
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
@@ -52,6 +56,7 @@ INSTALLED_APPS = [
     'employee',
     'crispy_forms',
     'captcha',
+    'donate'
 
 
 ]
@@ -65,7 +70,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.messages.context_processors.messages',
 
 ]
 
@@ -138,6 +142,9 @@ ALLOWED_HOSTS = ['*']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
@@ -171,8 +178,12 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = '/members/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = 'members:profile'
+# LOGOUT_REDIRECT_URL = 'members:logout'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+AUTH_PROFILE_MODULE = 'accounts.Profile'
 
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True

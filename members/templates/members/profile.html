@@ -1,0 +1,37 @@
+{% extends 'members/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+
+<style>
+  .profile {
+    margin-top: 100px
+  }
+  .account-img {
+    width:15%;
+  }
+  body {
+    /* height: 100%; */
+  }
+</style>
+
+<div class="container profile">
+  <div class="row">
+      <div class="col">
+        <div class="content-section">
+          <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="">
+            <div class="media-tbody">
+              <h2 class="account-heading">{{user.username}}</h2>
+              <p class="text-secondary">{{user.email}}</p>
+              <p class="text-secondary">City</p>
+              <p class="text-secondary">State</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<br><br><br><br><br><br>
+<br>
+{% endblock %}

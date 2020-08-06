@@ -1,4 +1,25 @@
-{% block content %}
-  <p>Logged out!</p>
-  <a href="{% url 'members:accounts/login'%}">Click here to login again.</a>
+{% extends 'members/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<style>
+  .logout {
+    margin-top: 150px;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>
+
+  <div class="container logout">
+    <div class="row">
+      <div class="col">
+  <h3>You have logged out!</h3>
+  <a href="{% url 'members:login'%}">Click here to login again.</a>
+</div>
+</div>
+</div>
+<br><br><br><br><br><br><br>
 {% endblock %}

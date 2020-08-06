@@ -34,9 +34,10 @@
 
 <h2>SCU Member Login</h2>
 <br>
-<form method="post" action="{% url 'members:login' %}">
+<form method="post" action="">
 {% csrf_token %}
-<table>
+{{form|crispy}}
+<!-- <table>
 <tr>
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
@@ -45,8 +46,9 @@
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
 </tr>
-</table>
+</table> -->
 <br>
+<!-- <a href="{% url 'members:profile' %}">Login</a> -->
 <input class="btn btn-success btn-sm" type="submit" value="login">
 <input type="hidden" name="next" value="{{ next }}">
 </form>
