@@ -142,7 +142,13 @@
           </li>
           <a class="nav-item nav-link text-dark font-weight-bold" href="/news/">News</a>
           <a class="nav-item nav-link text-dark font-weight-bold" href="/contact/">Contact</a>
-          <a class="nav-item nav-link text-dark font-weight-bold" href="/donate/">Donate</a>
+          {% if user.is_authenticated %}
+          <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:profile' %}">Profile</a>
+          <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:logout' %}">Logout</a>
+          {% endif %}
+          <button class="btn btn-success btn-lg" onclick="window.open('https://www.paypal.com/biz/fund?id=F5L38BZW2V7DJ','_blank')">DONATE</button>
+
+          <!-- <a class="nav-item nav-link text-dark font-weight-bold" href="https://www.paypal.com/biz/fund?id=F5L38BZW2V7DJ">Donate</a> -->
 
           <!-- <a class="nav-item nav-link" href="/portal/">Employee Portal</a> -->
 
@@ -150,14 +156,9 @@
         </div>
     </nav>
   </div>
-  {% if user.is_authenticated %}
-  <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:profile' %}">Profile</a>
-  <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:logout' %}">Logout</a>
-  {% endif %}
     <!-- navbar end -->
 
     {% block body %}
-
 
     {% endblock %}
 
@@ -188,7 +189,6 @@
               <li><a class="text-muted" href="/news/">News</a></li>
               <li><a class="text-muted" href="{% url 'members:profile' %}">Members</a></li>
               <!-- <li><a class="text-muted" href="#">Learning</a></li> -->
-              <li><a class="text-muted" href="/donate/">Donate</a></li>
               {% if user.is_authenticated %}
               <li><a class="text-muted" href="{% url 'members:logout' %}">Logout</a></li>
               {% else %}

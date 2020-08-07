@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
-from .models import Member, Address, Membership
+from .models import Member, Address
 from django.urls import reverse,reverse_lazy
 from django.contrib.auth.models import User
 from .forms import MemberUpdateForm, ContactForm, SignUpForm
@@ -12,7 +12,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponse
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -133,7 +134,7 @@ class ActivateAccount(View):
             user.profile.email_confirmed = True
             print("email confirmed")
             user.save()
-            login(request, user)
+            auth_login(request, user)
             messages.success(request, ('Your account has been confirmed.'))
             return redirect('/accounts/login')
         else:

@@ -15,16 +15,6 @@ class Address(models.Model):
     def __str__(self):
         return f"{self.street},{self.city},{self.state}"
 
-
-class Membership(models.Model):
-    id = models.AutoField(primary_key=True)
-    is_active = models.BooleanField(default=True)
-    is_donor = models.BooleanField(default=False)
-    is_volunteer = models.BooleanField(default=False)
-    is_vendor = models.BooleanField(default=False)
-    date_joined = models.DateField(auto_now_add=True)
-
-
 class Member(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
@@ -67,11 +57,3 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
-
-class Newsletter(models.Model):
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    email = models.EmailField(max_length=15)
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"

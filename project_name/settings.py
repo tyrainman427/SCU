@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'members',
     'employee',
     'crispy_forms',
+    'paypal.standard.ipn',
     'captcha',
     'donate'
 
@@ -184,6 +185,10 @@ LOGIN_REDIRECT_URL = 'members:profile'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTH_PROFILE_MODULE = 'accounts.Profile'
+
+PAYPAL_RECEIVER_EMAIL = 'sb-pbfva2854137@business.example.com'
+
+PAYPAL_TEST = True
 
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
