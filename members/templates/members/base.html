@@ -146,7 +146,7 @@
           <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:profile' %}">Profile</a>
           <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:logout' %}">Logout</a>
           {% endif %}
-          <a class="nav-item nav-link text-dark font-weight-bold" href="/donate/">Donate</a>
+          <button onclick="window.open('https://www.paypal.com/biz/fund?id=F5L38BZW2V7DJ','_blank')" class="btn btn-success btn-lg">DONATE</button>
 
           <!-- <a class="nav-item nav-link" href="/portal/">Employee Portal</a> -->
 
@@ -188,7 +188,7 @@
               <li><a class="text-muted" href="/news/">News</a></li>
               <li><a class="text-muted" href="{% url 'members:profile' %}">Members</a></li>
               <!-- <li><a class="text-muted" href="#">Learning</a></li> -->
-              <li><a class="text-muted" href="/donate/">Donate</a></li>
+              <li><a class="text-muted" href="https://www.paypal.com/biz/fund?id=F5L38BZW2V7DJ">Donate</a></li>
               {% if user.is_authenticated %}
               <li><a class="text-muted" href="{% url 'members:logout' %}">Logout</a></li>
               {% else %}
