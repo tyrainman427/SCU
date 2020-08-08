@@ -1,6 +1,6 @@
 from django.urls import path
 from django.urls import re_path
-from .views import MemberList,profile, MemberDetailView,ActivateAccount,SignUpView,index,program,founders, MemberCreateView, MemberUpdateView, MemberDeleteView,privacy,about,contact, employee_portal
+from .views import profile,ActivateAccount,SignUpView,index,program,founders,privacy,about,contact, employee_portal
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView,PasswordResetCompleteView,PasswordResetConfirmView,PasswordChangeView,PasswordChangeDoneView,PasswordResetView,PasswordResetConfirmView,PasswordResetDoneView
 
@@ -14,11 +14,11 @@ urlpatterns = [
     path('privacy/', privacy, name='privacy'),
     path('about/', about, name='about'),
     path('contact/', contact,name='contact'),
-    path('members/', MemberList.as_view(), name='member-list'),
-    path('members/<int:id>/', MemberDetailView.as_view(), name='members_detail'),
-    path('create/', MemberCreateView.as_view(), name='member-create'),
-    path('members/<int:id>/update/', MemberUpdateView, name='member-update'),
-    path('members/<pk>/delete/', MemberDeleteView.as_view(), name='member-delete'),
+    # path('members/', MemberList.as_view(), name='member-list'),
+    # path('members/<int:id>/', MemberDetailView.as_view(), name='members_detail'),
+    # path('create/', MemberCreateView.as_view(), name='member-create'),
+    # path('members/<int:id>/update/', MemberUpdateView, name='member-update'),
+    # path('members/<pk>/delete/', MemberDeleteView.as_view(), name='member-delete'),
     path('portal/', employee_portal, name='portal'),
     path('programs/', program, name='programs'),
     path('founders/', founders, name='founders'),

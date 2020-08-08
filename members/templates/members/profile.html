@@ -2,36 +2,71 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block body %}
+<script type="text/javascript">
+
+</script>
 
 <style>
   .profile {
-    margin-top: 100px
+    margin-top: 100px;
   }
   .account-img {
     width:15%;
   }
-  body {
-    /* height: 100%; */
-  }
+
+form {
+  display: none;
+}
+
+#formButton {
+  display: block;
+}
 </style>
 
 <div class="container profile">
+  {% if messages %}
+      {% for message in messages %}
+          {% if message.tags == 'success' %}
+              <div class="alert alert-success" role="alert">{{ message|escape|safe }}</div>
+          {% elif message.tags == 'error' %}
+              <div class="alert alert-danger" role="alert">{{ message|escape|safe }}</div>
+          {% endif %}
+      {% endfor %}
+  {% endif %}
+  <br>
   <div class="row">
       <div class="col">
         <div class="content-section">
           <div class="media">
-            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="">
+            <img class="rounded-circle account-img mr-4" src="{{ user.profile.image.url }}" alt="">
             <div class="media-tbody">
               <h2 class="account-heading">{{user.username}}</h2>
+              <p class="text-secondary">{{user.first_name}} {{user.last_name}}</p>
               <p class="text-secondary">{{user.email}}</p>
-              <p class="text-secondary">City</p>
-              <p class="text-secondary">State</p>
+              <p class="text-secondary">{{user.address.street}}</p>
+              <p class="text-secondary">{{user.address.city}}, {{user.address.state}}</p>
+              <button onclick="toggle_visibility('save-form', 'show-form');" class="btn btn-warning" type="button" id="show-form">Update Profile</button>
             </div>
           </div>
         </div>
       </div>
   </div>
+  <br><br>
+  <form id="save-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Profile Info</legend>
+      {{user_form|crispy }}
+      {{profile_form|crispy }}
+      {{address_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button onclick="toggle_visibility('save-form', 'show-form');" class="btn btn-success" type="submit">Update</button>
+    </div>
+  </form>
 </div>
 <br><br><br><br><br><br>
 <br>
+
+
 {% endblock %}

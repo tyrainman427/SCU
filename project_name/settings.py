@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     'employee',
     'crispy_forms',
     'captcha',
-    'donate'
+    'donate',
+
+    'django_cleanup',
 
 
 ]

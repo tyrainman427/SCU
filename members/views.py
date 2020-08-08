@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
-from .models import Member, Address, Membership
+from .models import Address, Profile
 from django.urls import reverse,reverse_lazy
 from django.contrib.auth.models import User
-from .forms import MemberUpdateForm, ContactForm, SignUpForm
+from .forms import ContactForm, SignUpForm, ProfileUpdateForm,AddressUpdateForm, UserUpdateForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
 from django.contrib.auth import update_session_auth_hash
@@ -91,13 +91,15 @@ class SignUpView(View):
 
     def post(self, request, *args, **kwargs):
 
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            human = True
+        # form = self.form_class(request.POST)
+        user_form = UserUpdateForm(request.POST)
+        profile_form = ProfileUpdateForm(request.POST,request.FILES)
+        address_form = AddressUpdateForm(request.POST)
 
-            user = form.save(commit=False)
-            user.is_active = False # Deactivate account till it is confirmed
-            user.save()
+        if user_form.is_valid() and profile_form.is_valid() and address_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            address_form.save()
 
             current_site = get_current_site(request)
             subject = 'Activate Your SCU Account'
@@ -116,7 +118,12 @@ class SignUpView(View):
             message = "You have enter an incorrect captcha. Please try again."
             messages.error(request,message)
 
-        return render(request, self.template_name, {'form': form})
+        context = {
+            'user_form':user_form,
+            'profile_form':profile_form,
+            'address_form':address_form
+        }
+        return render(request, self.template_name, context)
 
 class ActivateAccount(View):
 
@@ -152,7 +159,29 @@ def privacy(request):
 
 @login_required
 def profile(request):
-    return render(request, 'members/profile.html')
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST,instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+        address_form = AddressUpdateForm(request.POST,instance=request.user.address)
+
+        if user_form.is_valid() and profile_form.is_valid() and address_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            address_form.save()
+            messages.success(request, f'Your profile has been updated!')
+            return redirect('members:profile')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+        address_form = AddressUpdateForm(instance=request.user.address)
+
+    context = {
+        'user_form':user_form,
+        'profile_form':profile_form,
+        'address_form':address_form
+    }
+
+    return render(request, 'members/profile.html', context)
 
 def program(request):
     return render(request, 'members/programs.html')
@@ -202,59 +231,55 @@ def employee_portal(request):
     return render(request,'employee/index.html')
 
 
-class MemberList(ListView):
-    model = Member
-    model = Address
-    queryset = Member.objects.all()
-    address = Address.objects.all()
-    template_name = 'members/member_list.html'
+# class MemberList(ListView):
+#     model = Member
+#     model = Address
+#     queryset = Member.objects.all()
+#     address = Address.objects.all()
+#     template_name = 'members/member_list.html'
+#
+#     @method_decorator(login_required)
+#     def dispatch(self, *args, **kwargs):
+#         return super().dispatch(*args, **kwargs)
+
+
+# class MemberDetailView(DetailView):
+#     template_name = "members/member_detail.html"
+#     member = Member.objects.all()
+#     # form_class = MemberUpdateForm
+#
+#     def get_object(self):
+#         id_ = self.kwargs.get("id")
+#         return get_object_or_404(Member, id=id_)
+#
+#     def form_valid(self,form):
+#         return super().form_valid(form)
+#
+#     @method_decorator(login_required)
+#     def dispatch(self, *args, **kwargs):
+#         return super().dispatch(*args, **kwargs)
+#
+#
+# class MemberCreateView(CreateView):
+#     model = Member
+#     fields = ['first_name', 'last_name','phone_number','email_address',
+#      "date_of_birth"
+#     ]
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
 
-class MemberDetailView(DetailView):
-    template_name = "members/member_detail.html"
-    member = Member.objects.all()
-    form_class = MemberUpdateForm
-
-    def get_object(self):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(Member, id=id_)
-
-    def form_valid(self,form):
-        return super().form_valid(form)
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-
-class MemberCreateView(CreateView):
-    model = Member
-    fields = ['first_name', 'last_name','phone_number','email_address',
-     "date_of_birth"
-    ]
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-
-class MemberUpdateView(UpdateView):
-    model = Member
-    fields = ['first_name', 'last_name','email_address',
-    ]
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-class MemberDeleteView(DeleteView):
-    model = Member
-    success_url = '/members/'
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+# class MemberDeleteView(DeleteView):
+#     model = Member
+#     success_url = '/members/'
+#
+#     @method_decorator(login_required)
+#     def dispatch(self, *args, **kwargs):
+#         return super().dispatch(*args, **kwargs)

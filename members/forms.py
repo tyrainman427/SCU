@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.forms import ModelForm
 from captcha.fields import CaptchaField
 
-from .models import Address, Member, Contact
+from .models import Address, Contact, Profile
 
 
 class SignUpForm(UserCreationForm):
@@ -17,11 +17,19 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username','first_name','last_name', 'email', 'password1', 'password2')
 
-class MemberUpdateForm(forms.ModelForm):
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
 
     class Meta:
-        model = Member
-        fields = ['first_name','last_name']
+        model = User
+        fields = ['username','first_name','last_name','email']
+
+class AddressUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Address
+        fields = "__all__"
+        exclude = ['user']
 
 
 def should_be_empty(value):
@@ -40,3 +48,9 @@ class ContactForm(forms.Form):
     class Meta:
         model = Contact
         fields = "__all__"
+
+class ProfileUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ['image',]

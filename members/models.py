@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from PIL import Image
 
 
 class Address(models.Model):
@@ -11,6 +12,7 @@ class Address(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=2)
     zip = models.CharField(max_length=5)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.street},{self.city},{self.state}"
@@ -25,31 +27,42 @@ class Membership(models.Model):
     date_joined = models.DateField(auto_now_add=True)
 
 
-class Member(models.Model):
-    first_name = models.CharField(max_length=250)
-    last_name = models.CharField(max_length=250)
-    date_of_birth = models.CharField(max_length=10)
-    phone_number = models.CharField(max_length=250, blank=True)
-    email_address = models.CharField(max_length=30)
-    date_created = models.DateField(auto_now_add=True)
-    is_admin = models.BooleanField(default=False)
-    # membership = models.OneToOneField(Membership, on_delete=models.CASCADE)
-    address = models.ManyToManyField(Address)
-
-    def __str__(self):
-        return self.first_name
-
-    def get_absolute_url(self):
-        return reverse('members:members_detail', args=[str(self.id)])
+# class Member(models.Model):
+#     first_name = models.CharField(max_length=250)
+#     last_name = models.CharField(max_length=250)
+#     date_of_birth = models.CharField(max_length=10)
+#     phone_number = models.CharField(max_length=250, blank=True)
+#     email_address = models.CharField(max_length=30)
+#     date_created = models.DateField(auto_now_add=True)
+#     is_admin = models.BooleanField(default=False)
+#     # membership = models.OneToOneField(Membership, on_delete=models.CASCADE)
+#     address = models.ManyToManyField(Address)
+#
+#     def __str__(self):
+#         return self.first_name
+#
+#     def get_absolute_url(self):
+#         return reverse('members:members_detail', args=[str(self.id)])
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='profile_pics/default.png', upload_to='profile_pics')
+    date_created = models.DateField(auto_now_add=True)
     email_confirmed = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
 @receiver(post_save, sender=User)
