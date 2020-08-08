@@ -142,6 +142,10 @@
           </li>
           <a class="nav-item nav-link text-dark font-weight-bold" href="/news/">News</a>
           <a class="nav-item nav-link text-dark font-weight-bold" href="/contact/">Contact</a>
+          {% if user.is_authenticated %}
+          <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:profile' %}">Profile</a>
+          <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:logout' %}">Logout</a>
+          {% endif %}
           <a class="nav-item nav-link text-dark font-weight-bold" href="/donate/">Donate</a>
 
           <!-- <a class="nav-item nav-link" href="/portal/">Employee Portal</a> -->
@@ -150,10 +154,6 @@
         </div>
     </nav>
   </div>
-  {% if user.is_authenticated %}
-  <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:profile' %}">Profile</a>
-  <a class="nav-item nav-link text-dark font-weight-bold" href="{% url 'members:logout' %}">Logout</a>
-  {% endif %}
     <!-- navbar end -->
 
     {% block body %}
