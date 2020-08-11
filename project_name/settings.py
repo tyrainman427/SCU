@@ -186,6 +186,7 @@ LOGIN_REDIRECT_URL = 'members:profile'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTH_PROFILE_MODULE = 'accounts.Profile'
+AUTH_USER_MODEL="members.User"
 
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True

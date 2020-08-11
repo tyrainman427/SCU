@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from .models import Address, Profile
 from django.urls import reverse,reverse_lazy
-from django.contrib.auth.models import User
+from django.conf import settings
 from .forms import ContactForm, SignUpForm, ProfileUpdateForm,AddressUpdateForm, UserUpdateForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import datetime
@@ -69,6 +69,8 @@ from django.utils.decorators import method_decorator
 #         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
 #     else:
 #         return HttpResponse('Activation link is invalid!')
+
+
 def login(request):
     user = authenticate(username=username, password=password)
     if user is not None:
@@ -91,15 +93,13 @@ class SignUpView(View):
 
     def post(self, request, *args, **kwargs):
 
-        # form = self.form_class(request.POST)
-        user_form = UserUpdateForm(request.POST)
-        profile_form = ProfileUpdateForm(request.POST,request.FILES)
-        address_form = AddressUpdateForm(request.POST)
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            human = True
 
-        if user_form.is_valid() and profile_form.is_valid() and address_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            address_form.save()
+            user = form.save(commit=False)
+            user.is_active = False # Deactivate account till it is confirmed
+            user.save()
 
             current_site = get_current_site(request)
             subject = 'Activate Your SCU Account'
@@ -118,12 +118,7 @@ class SignUpView(View):
             message = "You have enter an incorrect captcha. Please try again."
             messages.error(request,message)
 
-        context = {
-            'user_form':user_form,
-            'profile_form':profile_form,
-            'address_form':address_form
-        }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, {'form': form})
 
 class ActivateAccount(View):
 
@@ -157,6 +152,9 @@ def about(request):
 def privacy(request):
     return render(request, 'members/privacy.html')
 
+def volunteer(request):
+    return render(request, 'members/volunteer.html')
+
 @login_required
 def profile(request):
     if request.method == "POST":
@@ -173,7 +171,7 @@ def profile(request):
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
-        address_form = AddressUpdateForm(instance=request.user.address)
+        address_form = AddressUpdateForm()
 
     context = {
         'user_form':user_form,

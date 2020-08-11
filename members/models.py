@@ -1,18 +1,18 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from PIL import Image
 
 
 class Address(models.Model):
-    street = models.CharField(max_length=500)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=2)
-    zip = models.CharField(max_length=5)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    street = models.CharField(max_length=500,blank=True)
+    city = models.CharField(max_length=50,blank=True)
+    state = models.CharField(max_length=2,blank=True)
+    zip = models.CharField(max_length=5,blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="address_for_user", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.street},{self.city},{self.state}"
@@ -43,19 +43,20 @@ class Membership(models.Model):
 #
 #     def get_absolute_url(self):
 #         return reverse('members:members_detail', args=[str(self.id)])
-
+class User(AbstractUser):
+    address = models.ForeignKey(Address,related_name='address_for_user',on_delete=models.CASCADE)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='profile_pics/default.png', upload_to='profile_pics')
-    date_created = models.DateField(auto_now_add=True)
+    date_created = models.DateField(auto_now_add=True,null=True, blank=True)
     email_confirmed = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
 
         img = Image.open(self.image.path)
 

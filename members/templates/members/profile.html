@@ -22,6 +22,15 @@ form {
   display: block;
 }
 </style>
+<script type="text/javascript">
+function success() {
+	 if(document.getElementById("address").value == "") {
+            document.getElementById('button').disabled = true;
+        } else {
+            document.getElementById('button').disabled = false;
+        }
+    }
+</script>
 
 <div class="container profile">
   {% if messages %}
@@ -43,8 +52,12 @@ form {
               <h2 class="account-heading">{{user.username}}</h2>
               <p class="text-secondary">{{user.first_name}} {{user.last_name}}</p>
               <p class="text-secondary">{{user.email}}</p>
+              {% if user.profile.address %}
               <p class="text-secondary">{{user.address.street}}</p>
               <p class="text-secondary">{{user.address.city}}, {{user.address.state}}</p>
+              {% else %}
+              <p class="text-secondary">(Please update profile and add your address.)</p>
+              {% endif%}
               <button onclick="toggle_visibility('save-form', 'show-form');" class="btn btn-warning" type="button" id="show-form">Update Profile</button>
             </div>
           </div>
@@ -54,14 +67,14 @@ form {
   <br><br>
   <form id="save-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <fieldset class="form-group">
+    <fieldset class="form-group" onkeyup="success()" id="address">
       <legend class="border-bottom mb-4">Profile Info</legend>
       {{user_form|crispy }}
       {{profile_form|crispy }}
       {{address_form|crispy }}
     </fieldset>
     <div class="form-group">
-      <button onclick="toggle_visibility('save-form', 'show-form');" class="btn btn-success" type="submit">Update</button>
+      <button id="button" onclick="toggle_visibility('save-form', 'show-form');" class="btn btn-success validate" type="submit" disabled>Update</button>
     </div>
   </form>
 </div>

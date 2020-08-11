@@ -1,0 +1,68 @@
+{% extends 'members/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<style media="screen">
+  .volunteer {
+    margin-top: 100px;
+    background: black;
+    color: white;
+    font-size: 25px;
+  }
+  h1 {
+    text-align: center;
+    font-family: sans-serif;
+  }
+  h3 {
+    font-family: sans-serif;
+  }
+</style>
+
+<div class="container volunteer mb-4">
+  <div class="row">
+    <div class="col">
+        <h1>Looking to Volunteer?</h1>
+        <br>
+        <h3>We need:</h3>
+        <ul>
+          <li>Teachers
+            <ul>
+              <li>Financial literacy</li>
+              <li>Business literacy</li>
+              <li>Home buyers education</li>
+            </ul>
+          </li>
+          <li>Landscaping
+            <ul>
+              <li>Gardners</li>
+              <li>Tree removal</li>
+              <li>Leaf removal</li>
+              <li>Snow removal</li>
+              <li>Trash pick up and remove</li>
+            </ul>
+          </li>
+          <li>
+            Fundraiser Coordinators
+          </li>
+          <li>Administration(Prefer Teens and preteens)
+            <ul>
+              <li>Answer phones after school</li>
+              <li>Do youth intake</li>
+              <li>Maintain calendars</li>
+              <li>Filing</li>
+            </ul>
+          </li>
+          <li>Recruiters</li>
+          <li>Various Internships</li>
+          <li>Babysitters (prefer youth that majors in childhood development)</li>
+          <li>Youth Photographer</li>
+          <li>Youth DJs</li>
+        </ul>
+
+        <p class="font-weight-bold">For more information or details please email info@silvercityuprising.org </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
