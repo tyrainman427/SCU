@@ -271,11 +271,25 @@ h5 .card-title {
   color: white;
   text-align: center;
 }
-
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+}
 body {
   font-size: 16px;
 }
-
+@media screen and (max-width: 380px) {
+  .jumbotron{
+    background-image: none!important;
+    background-color: white;
+    margin-top: 34px;
+    }
+    .display-4 {
+      font-size: 50px;
+    }
+}
 
 @media (min-width: 576px) {
   .card-deck {

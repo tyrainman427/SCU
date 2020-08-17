@@ -1,6 +1,6 @@
 from django.urls import path
 from django.urls import re_path
-from .views import profile,ActivateAccount,volunteer,SignUpView,index,program,founders,privacy,about,contact, employee_portal
+from .views import events,grants,housing,task_force,training,profile,ActivateAccount,volunteer,SignUpView,index,program,founders,privacy,about,contact, employee_portal
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView,PasswordResetCompleteView,PasswordResetConfirmView,PasswordChangeView,PasswordChangeDoneView,PasswordResetView,PasswordResetConfirmView,PasswordResetDoneView
 
@@ -14,6 +14,11 @@ urlpatterns = [
     path('privacy/', privacy, name='privacy'),
     path('about/', about, name='about'),
     path('contact/', contact,name='contact'),
+    path('events/', events,name='events'),
+    path('grants/', grants,name='grants'),
+    path('housing/', housing,name='housing'),
+    path('task_force/', task_force,name='task_force'),
+    path('training/', training,name='training'),
     # path('members/', MemberList.as_view(), name='member-list'),
     # path('members/<int:id>/', MemberDetailView.as_view(), name='members_detail'),
     # path('create/', MemberCreateView.as_view(), name='member-create'),

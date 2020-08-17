@@ -1,0 +1,86 @@
+{% extends "members/base.html" %}
+{% load static %}
+
+{% block body %}
+<style media="screen">
+  .training {
+    margin-top: 100px;
+    margin-bottom: 40px;
+  }
+  .title {
+    font-family: sans-serif;
+  }
+  .jumbotron {
+  background-image: url("{% static 'img/learning.jpg' %}");
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+  border: 3px solid red;
+  padding: 10px;
+  box-shadow: 5px 10px black;
+  border-radius:12px;
+  }
+  .join {
+    text-align: center;
+    font-weight: bolder;
+  }
+  ul {
+    font-size: 20px;
+  }
+  
+</style>
+
+
+<div class="container training">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron jumbotron-fluid customjumbotron">
+        <div class="container">
+          <h1 class="display-4">SCU TRAINING PROGRAM</h1>
+          <br><br>
+
+        </div>
+      </div>
+      <ul>
+          <li>Financial Literacy Training
+              <ul>
+                  <li>Members will receive training on how to save money, building equity through
+                      investments and how to live within their means to decrease financial insecurities.</li>
+              </ul>
+          </li>
+          <li>Technology Training
+              <ul>
+                  <li>There are a number of paths to choose from such as Technical Support, Web Development, Mobile Development and many others.</li>
+                  <li>
+                      Members will receive training on specific technologies and applications used for work, college
+                      and/or leisure.
+                  </li>
+                  <li>
+                      SCU will provide members with a online learning platform that enable them to self-learn and earn certificates.
+                  </li>
+              </ul>
+          </li>
+          <li>Business Literacy Training
+              <ul>
+                  <li>
+                      Members who fall into financial crisis seeking financial assistance of any kind will be
+                      required to take this training.
+                  </li>
+              </ul>
+          </li>
+      </ul>
+
+          <p style="text-align:center;">
+          All trainings will be conducted by certified educators selected by SCU and based on their
+          availability.
+          </p>
+          <br><br>
+          <div class="join">
+            <h2 class="title">Become A Member Today and Start Training!</h2><br>
+            <a class="btn btn-danger btn-lg" href="https://mailchi.mp/0d937b05404c/membership">Join Us</a>
+          </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

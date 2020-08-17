@@ -155,6 +155,21 @@ def privacy(request):
 def volunteer(request):
     return render(request, 'members/volunteer.html')
 
+def events(request):
+    return render(request, 'members/events.html')
+
+def grants(request):
+    return render(request, 'members/grants.html')
+
+def housing(request):
+    return render(request, 'members/housing.html')
+
+def task_force(request):
+    return render(request, 'members/task_force.html')
+
+def training(request):
+    return render(request, 'members/training.html')
+
 @login_required
 def profile(request):
     if request.method == "POST":

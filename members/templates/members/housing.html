@@ -1,0 +1,86 @@
+{% extends "members/base.html" %}
+{% load static %}
+
+{% block body %}
+<style media="screen">
+  .house {
+    margin-top: 100px;
+    margin-bottom: 40px;
+  }
+  .title {
+    font-family: sans-serif;
+  }
+  .jumbotron {
+  background-image: url("{% static 'img/house.png' %}");
+  background-size: cover;
+  width: 100%;
+  height: 300px;
+  border: 3px solid red;
+  padding: 10px;
+  box-shadow: 5px 10px black;
+  border-radius:12px;
+  -webkit-text-stroke: 1px white;
+  }
+  .join {
+    text-align: center;
+    font-weight: bolder;
+  }
+  ul {
+    font-size: 20px;
+  }
+</style>
+
+<div class="container house">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">HOUSING ASSISTANCE PROGRAM</h1>
+          <br><br><br>
+        </div>
+      </div>
+      <ul>
+      <ul>
+          <li>Temporary affordable housing for low income members (As long as SCU has available units)
+              <ul>
+                  <li>Members will receive training on how to save money, building equity through
+                      investments and how to live within their means to decrease financial insecurities.</li>
+                  <li>Members will be allowed to apply for temporary housing under certain guidelines.
+                  Tenant selection and occupancy policies permit SCU to examine an applicant’s history, including criminal
+                  background, to ensure selection of a responsible tenant.  SCU has the power to deny admission to
+                  individuals with a history of use or abuse of drugs or alcohol, or of criminal behavior that interferes with
+                  the peaceful enjoyment of the premises by other residents.  Eligibility for assistance under SCU programs
+                  are limited to U.S. citizens who are members of SCU.  SCU Program participants are also required to
+                  submit household income documentation each year to determine continued eligibility in the program.
+                  This process is called the annual review.  Tenant understands that the lease renewal process cannot
+                  exceed a period of 3 years unless an extension is granted by SCU’s board of directors. SCU will provide
+                  temporary affordable housing to SCU members who meet the minimum requirements on a first come
+                  first serve basis as long as housing is available and tenants are committed to achieving the one or more of the following goals:
+                  <ul>
+                    <li>GED or High School Diploma</li>
+                    <li>Training classes / programs</li>
+                    <li>Getting a CT Driver’s License</li>
+                    <li>Budgeting</li>
+                    <li>Becoming debt free</li>
+                    <li>Home Buyer Education</li>
+                    <li>Attend college for a certificate or degree</li>
+                    <li>Purchasing a car</li>
+                    <li>Repair or build a good credit score</li>
+                    <li>Saving Money (proof of an untouchable account for the term of the lease must be provided and
+                    tent must be able to afford to put away $50 a paycheck in such account in addition to paying $300 a
+                    month for rent and utilities)</li>
+                    <li>Buying a House</li>
+                  </ul>
+                </li>
+              </ul>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="join">
+  <h2 class="title">Become A Member Today and Start Training!</h2><br>
+  <a class="btn btn-danger btn-lg" href="https://mailchi.mp/0d937b05404c/membership">Join Us</a>
+</div>
+<br><br>
+{% endblock %}
