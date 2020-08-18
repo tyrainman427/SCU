@@ -8,16 +8,16 @@ To use this project, follow these steps:
 
 ## Packages needed to work:
 
-dj-database-url==0.5.0
-Django==3.0.7pip
-django-crispy-forms==1.9.2
-django-sendgrid-v5==0.8.1
-django-summernote==0.8.11.6
-newsapi-python==0.2.6
-postgres==3.0.0
-psycopg2==2.8.5
-psycopg2-binary==2.8.5
-sendgrid==6.4.4
+- [dj-database-url==0.5.0]
+- [Django==3.0.7pip]
+- [django-crispy-forms==1.9.2]
+- [django-sendgrid-v5==0.8.1]
+- [django-summernote==0.8.11.6]
+- [newsapi-python==0.2.6]
+- [postgres==3.0.0]
+- [psycopg2==2.8.5]
+- [psycopg2-binary==2.8.5]
+- [sendgrid==6.4.4]
 
 
 
