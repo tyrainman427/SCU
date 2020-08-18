@@ -4,7 +4,11 @@
 To use this project, follow these steps:
 
 1. Create your working environment.
-2. Install Django (`$ pip install django`)
+2. Create enviroment in the console: virtualenv env
+3. To access environment: source env/bin/activate
+4. Install Django (`$ pip install django`)
+5. Use pip install to install packages below.
+6. To exit test environment in the consolde: deactivate
 
 ## Packages needed to work:
 
